@@ -1,0 +1,122 @@
+public class Book {
+    private String title;
+    private String author;
+    private String isbn;
+    public Book(String title, String author, String isbn) {
+        this.title = title;
+        this.author = author;
+        this.isbn = isbn;
+    }
+    public String getTitle() {
+        return title;
+    }
+    public String getAuthor() {
+        return author;
+    }
+    public String getIsbn() {
+        return isbn;
+    }
+    @Override
+    public String toString() {
+        return "Title: " + title + ", Author: " + author + ", ISBN: " + isbn;
+    }
+}
+
+import java.util.ArrayList;
+import java.util.List;
+public class Library {
+    private List<Book> books;
+    public Library() {
+        this.books = new ArrayList<>();
+    }
+    public void addBook(Book book) {
+        books.add(book);
+    }
+    public void removeBook(String isbn) {
+        books.removeIf(book -> book.getIsbn().equals(isbn));
+    }
+    public Book findBookByIsbn(String isbn) {
+        for (Book book : books) {
+            if (book.getIsbn().equals(isbn)) {
+                return book;
+            }
+        }
+        return null;
+    }
+    public List<Book> getBooks() {
+        return books;
+    }
+}
+
+import java.util.Scanner;
+public class LibraryApp {
+    private static Library library = new Library();
+    private static Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
+        while (true) {
+            printMenu();
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
+                case 1:
+                    addBook();
+                    break;
+                case 2:
+                    removeBook();
+                    break;
+                case 3:
+                    viewBooks();
+                    break;
+                case 4:
+                    findBook();
+                    break;
+                case 5:
+                    System.out.println("Exiting...");
+                    return;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+    private static void printMenu() {
+        System.out.println("\nLibrary Management System");
+        System.out.println("1. Add Book");
+        System.out.println("2. Remove Book");
+        System.out.println("3. View All Books");
+        System.out.println("4. Find Book by ISBN");
+        System.out.println("5. Exit");
+        System.out.print("Enter your choice: ");
+    }
+    private static void addBook() {
+        System.out.print("Enter title: ");
+        String title = scanner.nextLine();
+        System.out.print("Enter author: ");
+        String author = scanner.nextLine();
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+        Book book = new Book(title, author, isbn);
+        library.addBook(book);
+        System.out.println("Book added successfully.");
+    }
+    private static void removeBook() {
+        System.out.print("Enter ISBN of the book to remove: ");
+        String isbn = scanner.nextLine();
+        library.removeBook(isbn);
+        System.out.println("Book removed successfully.");
+    }
+    private static void viewBooks() {
+        System.out.println("Books in library:");
+        for (Book book : library.getBooks()) {
+            System.out.println(book);
+        }
+    }
+    private static void findBook() {
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.nextLine();
+        Book book = library.findBookByIsbn(isbn);
+        if (book != null) {
+            System.out.println("Book found: " + book);
+        } else {
+            System.out.println("Book not found.");
+        }
+    }
+}
