@@ -1,0 +1,63 @@
+### Diagrama de Classes UML
+
+#### Classes e Relacionamentos
+- **Book**
+  - **Atributos**:
+    - `String title`
+    - `String author`
+    - `String isbn`
+  - **Métodos**:
+    - `Book(String title, String author, String isbn)`
+    - `String getTitle()`
+    - `String getAuthor()`
+    - `String getIsbn()`
+    - `String toString()`
+
+- **Library**
+  - **Atributos**:
+    - `List<Book> books`
+  - **Métodos**:
+    - `Library()`
+    - `void addBook(Book book)`
+    - `void removeBook(String isbn)`
+    - `Book findBookByIsbn(String isbn)`
+    - `List<Book> getBooks()`
+
+- **LibraryApp**
+  - **Atributos**:
+    - `static Library library`
+    - `static Scanner scanner`
+  - **Métodos**:
+    - `public static void main(String[] args)`
+    - `private static void printMenu()`
+    - `private static void addBook()`
+    - `private static void removeBook()`
+    - `private static void viewBooks()`
+    - `private static void findBook()`
+
+### Diagrama de Classes UML Visual
+
+Aqui está o diagrama de classes UML no formato visual:
+
+![Diagrama de Classes UML - Sistema de Gerenciamento de Bibliotecas](https://i.imgur.com/7KufqC3.png)
+
+### Descrição do Diagrama
+
+1. **Book**
+   - Representa um livro com atributos `title`, `author` e `isbn`.
+   - Métodos para acessar esses atributos e um método `toString()` para representar o livro como uma string.
+
+2. **Library**
+   - Contém uma lista de livros (`books`).
+   - Métodos para adicionar, remover, buscar e obter a lista de livros.
+
+3. **LibraryApp**
+   - Classe principal que interage com o usuário via console.
+   - Contém métodos para exibir o menu, adicionar, remover, visualizar e buscar livros.
+   - Usa a classe `Library` para gerenciar os livros e `Scanner` para entrada do usuário.
+
+Para criar este diagrama, você pode utilizar ferramentas como:
+- [Lucidchart](https://www.lucidchart.com/)
+- [Draw.io](https://www.draw.io/)
+- [StarUML](http://staruml.io/)
+- Microsoft Visio
